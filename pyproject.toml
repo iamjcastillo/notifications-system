@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "fastapi-app"
+version = "0.1.0"
+description = "A restful API for system notification using Domain-Driven Design principles."
+authors = ["Jesús Castillo"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.95.0"
+uvicorn = "^0.22.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
