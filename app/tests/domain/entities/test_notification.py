@@ -9,10 +9,10 @@ from app.domain.value_objects.topic import Topic
 class NotificationTestCase(unittest.TestCase):
     def test_creating_notification_returns_correct_object(self):
         topic = Topic.SALES
-        description = Description("Test description")
+        description = Description.create("Test description")
 
         notification = Notification.create(topic, description)
 
         self.assertEqual(notification.topic, Topic.SALES)
-        self.assertEqual(notification.description, Description("Test description"))
+        self.assertEqual(notification.description, Description.create("Test description"))
         self.assertTrue(isinstance(notification.id, NotificationID))
