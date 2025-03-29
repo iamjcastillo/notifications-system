@@ -27,7 +27,7 @@ jobs:
         run: poetry config virtualenvs.create false
 
       - name: Install dependencies with Poetry
-        run: poetry install --no root --no-interaction --no-ansi
+        run: poetry install --no-root --no-interaction --no-ansi
 
       - name: Run tests
         run: poetry run python -m unittest discover app/tests
