@@ -10,13 +10,14 @@ from app.domain.value_objects.topic import Topic
 
 class NotificationServiceTestCase(unittest.TestCase):
     def test_given_topic_and_description_then_notification_is_created(self):
-        topic = Topic.PRICING
-        description = Description.create("Email description")
+        topic = "pricing"
+        description = "Email description"
         event_publisher = MagicMock(spec_set=EventPublisher)
         notification_service = NotificationServiceImpl(event_publisher)
 
         notification = notification_service.create_notification(topic, description)
 
         self.assertTrue(isinstance(notification, Notification))
-        self.assertEqual(notification.topic, topic)
-        self.assertEqual(notification.description, description)
+        self.assertEqual(notification.topic, Topic.PRICING)
+        self.assertTrue(isinstance(notification.description, Description))
+        self.assertEqual(notification.description.value, description)

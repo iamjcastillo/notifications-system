@@ -16,6 +16,8 @@ class NotificationServiceImpl(NotificationService):
     def __init__(self, event_publisher: EventPublisher):
         self._event_publisher = event_publisher
 
-    def create_notification(self, topic: Topic, description: Description) -> Notification:
+    def create_notification(self, topic: str, description: str) -> Notification:
+        topic = Topic.create(topic)
+        description = Description.create(description)
         notification = Notification.create(topic, description, self._event_publisher)
         return notification
