@@ -34,3 +34,11 @@ class SlackNotificationCreatedEvent(NotificationCreatedEvent):
         channel = f"New Notification: {self.topic.value}"
         message = f"You have a new notification regarding: {self.description.value}"
         return channel, message
+
+
+@dataclass(frozen=True)
+class NotionNotificationCreatedEvent(NotificationCreatedEvent):
+    def create_notion_content(self) -> Tuple[str, str]:
+        subject = f"New Notification: {self.topic.value}"
+        body = f"You have a new notification regarding: {self.description.value}"
+        return subject, body

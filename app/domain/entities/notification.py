@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from app.domain.events.domain_events import EmailNotificationCreatedEvent, \
-    SlackNotificationCreatedEvent
+    SlackNotificationCreatedEvent, NotionNotificationCreatedEvent
 from app.domain.events.event_publisher import EventPublisher
 from app.domain.value_objects.description import Description
 from app.domain.value_objects.notification_id import NotificationID
@@ -15,7 +15,8 @@ class Notification:
     description: Description
     __event_classification = {
         Topic.PRICING: EmailNotificationCreatedEvent,
-        Topic.SALES: SlackNotificationCreatedEvent
+        Topic.SALES: SlackNotificationCreatedEvent,
+        Topic.SUPPORT: NotionNotificationCreatedEvent
     }
 
     @classmethod

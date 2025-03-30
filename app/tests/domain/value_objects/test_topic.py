@@ -15,3 +15,7 @@ class TopicTestCase(unittest.TestCase):
     def test_given_invalid_topic_when_create_then_error_is_raised(self):
         with self.assertRaises(ValueError):
             Topic.create("invalid")
+
+    def test_given_support_topic_when_create_then_topic_is_created(self):
+        topic = Topic.create("support")
+        self.assertEqual(topic, Topic.SUPPORT)

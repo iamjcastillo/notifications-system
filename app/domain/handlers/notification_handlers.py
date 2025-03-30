@@ -19,3 +19,9 @@ class SlackNotificationHandler(NotificationHandler):
     @abstractmethod
     def send_message(self, channel: str, message: str) -> None:
         pass
+
+
+class NotionNotificationHandler(NotificationHandler):
+    @abstractmethod
+    def send_message(self, subject: str, body: str) -> None:
+        pass
