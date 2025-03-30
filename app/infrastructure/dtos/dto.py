@@ -5,3 +5,15 @@ from dataclasses import dataclass
 class NotificationCreationRequest:
     topic: str
     description: str
+
+
+@dataclass(frozen=True)
+class NotificationDTO:
+    id: str
+    topic: str
+    description: str
+
+
+@dataclass(frozen=True)
+class NotificationResponse:
+    notification: NotificationDTO
