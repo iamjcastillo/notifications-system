@@ -1,11 +1,29 @@
 # Restful API for system notification
-Implementing DDD architecture in a Python web application.
+Implementing DDD architecture in a Python application.
 
 
 ## Tech Stack
 
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [Docker](https://www.docker.com/)
+
+
+## Description
+
+The Notification System handles Notifications and redirects them to the correct channel depending on the Topic.
+
+Each Notification contains:
+- Topic: a string
+- Description: a string with a description of the problem that needs assistance from
+
+
+``` 
+Topic    | Channel   
+----------------------
+sales    | Slack
+pricing  | Email
+support  | Notion
+```
 
 
 ## Project Setup
