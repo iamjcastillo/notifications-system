@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 from app.domain.events.domain_events import NotionNotificationCreatedEvent
 from app.domain.exceptions.exceptions import NotionException
@@ -7,6 +7,7 @@ from app.domain.value_objects.description import Description
 from app.domain.value_objects.notification_id import NotificationID
 from app.domain.value_objects.topic import Topic
 from app.infrastructure.handlers.notion_handler import NotionHandler
+from app.infrastructure.instrumentation.notification_instrumentation import NotificationInstrumentation
 
 
 class NotionHandlerTestCase(unittest.TestCase):
@@ -16,7 +17,8 @@ class NotionHandlerTestCase(unittest.TestCase):
         topic = Topic.SUPPORT
         description = Description.create("Notion description")
         event = NotionNotificationCreatedEvent(notification_id, topic, description)
-        handler = NotionHandler()
+        instrumentation = MagicMock(spec=NotificationInstrumentation)
+        handler = NotionHandler(instrumentation)
 
         handler.handle(event)
 
@@ -32,7 +34,8 @@ class NotionHandlerTestCase(unittest.TestCase):
         topic = Topic.SUPPORT
         description = Description.create("Notion description")
         event = NotionNotificationCreatedEvent(notification_id, topic, description)
-        handler = NotionHandler()
+        instrumentation = MagicMock(spec=NotificationInstrumentation)
+        handler = NotionHandler(instrumentation)
 
         with self.assertRaises(NotionException):
             handler.handle(event)

@@ -37,7 +37,7 @@ class DomainEventTestCase(unittest.TestCase):
         description = Description.create("Notion description")
         event = NotionNotificationCreatedEvent(notification_id, topic, description)
 
-        subject, body = event.create_notion_content()
+        subject, body, _ = event.create_notion_content()
 
         self.assertEqual(subject, "New Notification: support")
         self.assertEqual(body, "You have a new notification regarding: Notion description")
