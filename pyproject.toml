@@ -6,10 +6,11 @@ authors = ["Jesús Castillo"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.95.0"
+fastapi = "^0.115.12"
 uvicorn = "^0.22.0"
 slowapi = "^0.1.9"
 notion-client = "^2.3.0"
+starlette = "^0.46.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
