@@ -15,6 +15,7 @@ class NotificationTestCase(unittest.TestCase):
         topic = Topic.SALES
         description = Description.create("Test description")
         event_publisher = MagicMock(spec_set=EventPublisher)
+        Notification.register_event(Topic.SALES, SlackNotificationCreatedEvent)
 
         notification = Notification.create(topic, description, event_publisher)
 
@@ -26,6 +27,7 @@ class NotificationTestCase(unittest.TestCase):
         topic = Topic.PRICING
         description = Description.create("Email description")
         event_publisher = MagicMock(spec_set=EventPublisher)
+        Notification.register_event(Topic.PRICING, EmailNotificationCreatedEvent)
 
         Notification.create(topic, description, event_publisher)
 
@@ -37,6 +39,7 @@ class NotificationTestCase(unittest.TestCase):
         topic = Topic.SALES
         description = Description.create("Slack description")
         event_publisher = MagicMock(spec_set=EventPublisher)
+        Notification.register_event(Topic.SALES, SlackNotificationCreatedEvent)
 
         Notification.create(topic, description, event_publisher)
 
@@ -48,6 +51,7 @@ class NotificationTestCase(unittest.TestCase):
         topic = Topic.SUPPORT
         description = Description.create("Notion description")
         event_publisher = MagicMock(spec_set=EventPublisher)
+        Notification.register_event(Topic.SUPPORT, NotionNotificationCreatedEvent)
 
         Notification.create(topic, description, event_publisher)
 

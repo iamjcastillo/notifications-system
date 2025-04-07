@@ -1,6 +1,7 @@
 import logging
 
 from app.application.services.notification_service import NotificationServiceImpl
+from app.domain.entities.notification import Notification, Topic
 from app.domain.events.domain_events import EmailNotificationCreatedEvent, SlackNotificationCreatedEvent, \
     NotionNotificationCreatedEvent
 from app.domain.events.event_publisher import EventPublisherImpl
@@ -14,6 +15,10 @@ def setup_notification_system():
     logger = logging.getLogger(__name__)
     event_publisher = EventPublisherImpl()
     instrumentation = NotificationInstrumentation(logger)
+
+    Notification.register_event(Topic.PRICING, EmailNotificationCreatedEvent)
+    Notification.register_event(Topic.SALES, SlackNotificationCreatedEvent)
+    Notification.register_event(Topic.SUPPORT, NotionNotificationCreatedEvent)
 
     email_handler = EmailHandler()
     event_publisher.subscribe(EmailNotificationCreatedEvent, email_handler.handle)
